@@ -1,17 +1,22 @@
 from dataclasses import dataclass
+import datetime
 
+# Daten speichern
 items = []
 
 
 @dataclass
 class Item:
     text: str
+    date: datetime
     isCompleted: bool = False
 
 
-def add(text):
+# Ver-BBB-isierung
+def add(text, date):
     text = text.replace('b', 'bbb').replace('B', 'Bbb')
-    items.append(Item(text))
+    date_object = datetime.datetime.strptime(date, "%Y-%m-%d")
+    items.append(Item(text, date_object))
 
 
 def get_all():
